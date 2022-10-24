@@ -11,7 +11,9 @@ namespace InspiroBotBot
     {
         static async Task Main(string[] args)
         {
-            var client = await GetClient();
+            var token = args[1];
+            Console.WriteLine($"token: {token}");
+            var client = await GetClient(token);
 
             var channel = await RestTextChannel(client);
 
@@ -37,10 +39,10 @@ namespace InspiroBotBot
             return imageUrl;
         }
 
-        private static async Task<DiscordRestClient> GetClient()
+        private static async Task<DiscordRestClient> GetClient(string token)
         {
             var client = new DiscordRestClient();
-            var token = Environment.GetEnvironmentVariable("BOTTOKEN");
+            Console.WriteLine(token);
             await client.LoginAsync(TokenType.Bot, token);
             return client;
         }
