@@ -19,4 +19,4 @@ jobs:
       - name: Build and run
         run: |
           dotnet build
-          dotnet run -- ${{ secrets.TEST }}
+          dotnet run -- ${{ secrets.BOTTOKEN }}

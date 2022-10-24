@@ -1,5 +1,4 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Discord;
@@ -11,8 +10,7 @@ namespace InspiroBotBot
     {
         static async Task Main(string[] args)
         {
-            var token = args[1];
-            Console.WriteLine($"token: {token}");
+            var token = args[0];
             var client = await GetClient(token);
 
             var channel = await RestTextChannel(client);
@@ -42,7 +40,6 @@ namespace InspiroBotBot
         private static async Task<DiscordRestClient> GetClient(string token)
         {
             var client = new DiscordRestClient();
-            Console.WriteLine(token);
             await client.LoginAsync(TokenType.Bot, token);
             return client;
         }
