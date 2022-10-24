@@ -1,0 +1,25 @@
+﻿name: main
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 10 * * *'
+
+jobs:
+  send-inspirobot-pic:
+    name: Send a pic from Inspirobot to the general channel
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install dotnet
+        run: |
+          sudo apt install dotnet-sdk-6.0
+      - name: Set token
+        run: |
+          export BOTTOKEN=${{ secrets.BOTTOKEN }}
+      - name: Checkout code
+        uses: actions/checkout@v3
+        with:
+          ref: main
+      - name: Build and run
+        run: |
+          dotnet build
+          dotnet run
