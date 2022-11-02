@@ -12,7 +12,7 @@ jobs:
       - name: Install dotnet
         run: |
           sudo apt update
-          sudo apt install dotnet-sdk-6.0 -y
+          sudo apt install dotnet-sdk-5.0 -y
           dotnet --version
       - name: Checkout code
         uses: actions/checkout@v3
