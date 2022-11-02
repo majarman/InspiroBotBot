@@ -11,6 +11,8 @@ jobs:
     steps:
       - name: Install dotnet
         run: |
+          sudo apt update
+          sudo apt upgrade -y
           sudo apt install dotnet-sdk-6.0 -y
       - name: Checkout code
         uses: actions/checkout@v3
