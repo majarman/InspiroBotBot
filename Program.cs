@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Discord;
@@ -13,19 +14,39 @@ namespace InspiroBotBot
             var token = args[0];
             var client = await GetClient(token);
 
-            var channel = await RestTextChannel(client);
+            var channels = await GetRestTextChannelsAsync(client);
 
-            var imageUrl = await GetImageUrl();
-
-            await channel.SendMessageAsync("Daily Inspiration:");
-            await channel.SendMessageAsync(imageUrl);
+            foreach (var channel in channels)
+            {
+                var imageUrl = await GetImageUrl();
+                await channel.SendMessageAsync("Daily Inspiration:");
+                await channel.SendMessageAsync(imageUrl);
+            }
         }
 
-        private static async Task<RestTextChannel> RestTextChannel(DiscordRestClient client)
+        private static async Task<IEnumerable<RestTextChannel>> GetRestTextChannelsAsync(DiscordRestClient client)
         {
-            var guild = (await client.GetGuildsAsync()).First(x => x.Name == "The Queen Is Dead");
-            var channel = (await guild.GetTextChannelsAsync()).First(x => x.Name == "general");
-            return channel;
+            var allGuildsAndChannels = GetGuildsAndChannels();
+            
+            var allRestTextChannels = new List<RestTextChannel>();
+            
+            foreach (var (guildName, channelName) in allGuildsAndChannels)
+            {
+                var guild = (await client.GetGuildsAsync()).First(x => x.Name == guildName);
+                var channel = (await guild.GetTextChannelsAsync()).First(x => x.Name == channelName);
+                allRestTextChannels.Add(channel);
+            }
+            
+            return allRestTextChannels;
+        }
+
+        private static Dictionary<string, string> GetGuildsAndChannels()
+        {
+            return new Dictionary<string, string>
+            {
+                {"The Queen Is Dead", "general"},
+                {"WumboServer", "wumbochat"},
+            };
         }
 
         private static async Task<string> GetImageUrl()
