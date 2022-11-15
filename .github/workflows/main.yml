@@ -11,12 +11,15 @@ jobs:
     steps:
       - name: Install dotnet
         run: |
-          sudo apt install dotnet-sdk-6.0 -y
+          curl -L https://dotnet.microsoft.com/download/dotnet/scripts/v1/dotnet-install.sh -o ./dotnet-install.sh
+          sudo chmod +x ./dotnet-install.sh
+          ./dotnet-install.sh
       - name: Checkout code
         uses: actions/checkout@v3
         with:
           ref: main
       - name: Build and run
         run: |
+          ls -lah
           dotnet build
           dotnet run -- ${{ secrets.BOTTOKEN }}
