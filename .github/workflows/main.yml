@@ -11,9 +11,8 @@ jobs:
     steps:
       - name: Install dotnet
         run: |
-          sudo apt update
-          sudo apt install dotnet-sdk-6.0 -y
-          dotnet --version
+          curl -L https://dotnet.microsoft.com/download/dotnet/scripts/v1/dotnet-install.sh -o ./dotnet-install.sh
+          ./dotnet-install.sh
       - name: Checkout code
         uses: actions/checkout@v3
         with:
