@@ -12,6 +12,7 @@ jobs:
       - name: Install dotnet
         run: |
           curl -L https://dotnet.microsoft.com/download/dotnet/scripts/v1/dotnet-install.sh -o ./dotnet-install.sh
+          sudo chmod +x ./dotnet-install.sh
           ./dotnet-install.sh
       - name: Checkout code
         uses: actions/checkout@v3
