@@ -44,8 +44,8 @@ namespace InspiroBotBot
         {
             return new Dictionary<string, string>
             {
-                {"The Queen Is Dead", "general"},
                 {"WumboServer", "wumbochat"},
+                {"The Queen Is Dead", "general"},
             };
         }
 
