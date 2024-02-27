@@ -1,4 +1,5 @@
-﻿*.DotSettings.user
+*.DotSettings.user
 /.idea/
 /bin/
 /obj/
+/.vscode/
