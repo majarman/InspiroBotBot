@@ -19,8 +19,8 @@ namespace InspiroBotBot
             foreach (var channel in channels)
             {
                 var imageUrl = await GetImageUrl();
-                // await channel.SendMessageAsync("Daily Inspiration:");
-                // await channel.SendMessageAsync(imageUrl);
+                await channel.SendMessageAsync("Daily Inspiration:");
+                await channel.SendMessageAsync(imageUrl);
             }
         }
 
@@ -44,7 +44,6 @@ namespace InspiroBotBot
         {
             return new Dictionary<string, string>
             {
-                // {"WumboServer", "wumbochat"},
                 {"DnD with the bois 5.1", "general"},
             };
         }
