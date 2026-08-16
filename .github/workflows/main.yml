@@ -4,7 +4,6 @@ on:
   schedule:
     - cron: '0 10 * * *'
 
-
 jobs:
   send-inspirobot-pic:
     name: Send a pic from Inspirobot to the general channel
